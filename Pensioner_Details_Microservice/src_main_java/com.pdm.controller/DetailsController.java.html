@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>DetailsController.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Pensioner_Details_Microservice (05-Jun-2023 5:56:06 pm)</a> &gt; <a href="../../index.html" class="el_group">Pensioner_Details_Microservice</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">com.pdm.controller</a> &gt; <span class="el_source">DetailsController.java</span></div><h1>DetailsController.java</h1><pre class="source lang-java linenums">package com.pdm.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.pdm.entity.Details;
+import com.pdm.service.IDetailsService;
+
+
+@RestController
+<span class="fc" id="L22">public class DetailsController {</span>
+
+	@Autowired
+	IDetailsService iDetailsService;
+	
+	@GetMapping(&quot;/&quot;)
+	public String hello() {
+<span class="nc" id="L29">		return &quot;This is Pensioner Details Microservice&quot;;</span>
+	}
+	
+	@PostMapping(&quot;/add&quot;)
+	public Details addDetails(@RequestBody Details details) {
+<span class="nc" id="L34">		Details adddetails=iDetailsService.addDetails(details);</span>
+<span class="nc" id="L35">		return adddetails;</span>
+	}
+	
+	@GetMapping(&quot;/alldetails&quot;)
+	public List&lt;Details&gt; getAllDetails(){
+<span class="nc" id="L40">		return iDetailsService.getAllDetails();</span>
+	}
+	
+	@GetMapping(&quot;/get/{aadhar}&quot;)
+	public Optional&lt;Details&gt; getDetails(@PathVariable Long aadhar){
+<span class="nc" id="L45">		Optional&lt;Details&gt; details=iDetailsService.getDetails(aadhar);</span>
+<span class="nc" id="L46">		return details;</span>
+	}
+	
+	@PutMapping(&quot;/update/{aadhar}&quot;)
+	public ResponseEntity&lt;Details&gt; updateDetails(@PathVariable(&quot;aadhar&quot;) Long aadhar,@RequestBody Details details) {
+<span class="nc" id="L51">		return new ResponseEntity&lt;Details&gt;(iDetailsService.updateDetails(details, aadhar), HttpStatus.OK);</span>
+	}
+	
+	@DeleteMapping(&quot;/delete/{aadhar}&quot;)
+	public void deleteDetails(@PathVariable Long aadhar) {
+<span class="nc" id="L56">		iDetailsService.deleteDetails(aadhar);</span>
+<span class="nc" id="L57">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span>Pensioner_Details_Microservice (05-Jun-2023 5:56:06 pm)</div></body></html>

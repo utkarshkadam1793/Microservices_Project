@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ResourceNotFoundException.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Pensioner_Details_Microservice (05-Jun-2023 5:56:06 pm)</a> &gt; <a href="../../index.html" class="el_group">Pensioner_Details_Microservice</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">com.pdm.exceptionhandler</a> &gt; <span class="el_source">ResourceNotFoundException.java</span></div><h1>ResourceNotFoundException.java</h1><pre class="source lang-java linenums">package com.pdm.exceptionhandler;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(value = HttpStatus.NOT_FOUND)
+public class ResourceNotFoundException extends RuntimeException{
+	
+	private static final long serialVersionUID = 1L;
+	private String resourceName;
+	private String fieldName;
+	private Object fieldValue;
+	
+	public String getResourceName() {
+<span class="nc" id="L15">		return resourceName;</span>
+	}
+	public void setResourceName(String resourceName) {
+<span class="nc" id="L18">		this.resourceName = resourceName;</span>
+<span class="nc" id="L19">	}</span>
+	public String getFieldName() {
+<span class="nc" id="L21">		return fieldName;</span>
+	}
+	public void setFieldName(String fieldName) {
+<span class="nc" id="L24">		this.fieldName = fieldName;</span>
+<span class="nc" id="L25">	}</span>
+	public Object getFieldValue() {
+<span class="nc" id="L27">		return fieldValue;</span>
+	}
+	public void setFieldValue(Object fieldValue) {
+<span class="nc" id="L30">		this.fieldValue = fieldValue;</span>
+<span class="nc" id="L31">	}</span>
+	public ResourceNotFoundException(String resourceName, String fieldName, Object fieldValue) {
+<span class="nc" id="L33">		super(String.format(&quot;%s not found with %s : %s&quot;, resourceName, fieldName,fieldValue));</span>
+<span class="nc" id="L34">		this.resourceName = resourceName;</span>
+<span class="nc" id="L35">		this.fieldName = fieldName;</span>
+<span class="nc" id="L36">		this.fieldValue = fieldValue;</span>
+<span class="nc" id="L37">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span>Pensioner_Details_Microservice (05-Jun-2023 5:56:06 pm)</div></body></html>

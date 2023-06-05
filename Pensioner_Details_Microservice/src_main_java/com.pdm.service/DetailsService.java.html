@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>DetailsService.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Pensioner_Details_Microservice (05-Jun-2023 5:56:06 pm)</a> &gt; <a href="../../index.html" class="el_group">Pensioner_Details_Microservice</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">com.pdm.service</a> &gt; <span class="el_source">DetailsService.java</span></div><h1>DetailsService.java</h1><pre class="source lang-java linenums">package com.pdm.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.pdm.entity.Details;
+import com.pdm.exceptionhandler.ResourceNotFoundException;
+import com.pdm.repo.Repo;
+
+@Service
+<span class="fc" id="L14">public class DetailsService implements IDetailsService{</span>
+	
+	@Autowired
+	Repo repo;
+
+	@Override
+	public Details addDetails(Details details) {
+<span class="fc" id="L21">		Details addDetails=repo.save(details);</span>
+<span class="fc" id="L22">		return addDetails;</span>
+		
+	}
+
+	@Override
+	public List&lt;Details&gt; getAllDetails() {
+<span class="fc" id="L28">		return repo.findAll();</span>
+	}
+
+	@Override
+	public Optional&lt;Details&gt; getDetails(Long aadhar) {
+<span class="fc" id="L33">		return repo.findById(aadhar);</span>
+	}
+
+	@Override
+	public Details updateDetails(Details details, Long aadhar) {
+<span class="nc" id="L38">		Details existingDetails=repo.findById(aadhar).orElseThrow(</span>
+<span class="nc" id="L39">				()-&gt;new ResourceNotFoundException(&quot;Details&quot;, &quot;aadhar&quot;, aadhar));</span>
+<span class="nc" id="L40">		existingDetails.setName(details.getName());</span>
+<span class="nc" id="L41">		existingDetails.setDOB(details.getDOB());</span>
+<span class="nc" id="L42">		existingDetails.setPAN(details.getPAN());</span>
+<span class="nc" id="L43">		existingDetails.setSalaryEarned(details.getSalaryEarned());</span>
+<span class="nc" id="L44">		existingDetails.setAllownces(details.getAllownces());</span>
+<span class="nc" id="L45">		existingDetails.setPensionType(details.getPensionType());</span>
+<span class="nc" id="L46">		existingDetails.setBankName(details.getBankName());</span>
+<span class="nc" id="L47">		existingDetails.setAccNo(details.getAccNo());</span>
+<span class="nc" id="L48">		existingDetails.setBankType(details.getBankType());</span>
+<span class="nc" id="L49">		repo.save(existingDetails);</span>
+<span class="nc" id="L50">		return existingDetails;</span>
+	}
+
+	@Override
+	public void deleteDetails(Long aadhar) {
+<span class="fc" id="L55">		repo.deleteById(aadhar);</span>
+<span class="fc" id="L56">		System.out.println(aadhar+&quot; deleted&quot;);		</span>
+<span class="fc" id="L57">	}</span>
+
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span>Pensioner_Details_Microservice (05-Jun-2023 5:56:06 pm)</div></body></html>
